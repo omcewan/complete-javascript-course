@@ -55,7 +55,54 @@ const jonas = {
   job: 'Teacher',
   location: 'Portugal',
   friends: ['Julian', 'Reshon', 'Keivon'],
+  hasDriversLicense: false,
+  getSummary: function () {
+    return `${this.firstName} is a ${this.age} age old ${this.job}, who ${
+      this.hasDriversLicense
+        ? 'has a drivers license!'
+        : 'does not have a drivers license!'
+    }`;
+  },
 };
 
-const jonasStry = `${jonas.firstName} has ${jonas.friends.length} friends, and his best friends name is ${jonas.friends[0]}!`
+const jonasStry = `${jonas.firstName} has ${jonas.friends.length} friends, and his best friends name is ${jonas.friends[0]}!`;
 // console.log(jonasStry)
+// console.log(jonas.getSummary());
+
+// TODO: Coding Challenge 3
+let markData = {
+  firstName: 'Mark',
+  lastName: 'Miller',
+  mass: 78,
+  height: 1.69,
+  calcBMI: function () {
+    let mass = this.mass;
+    let height = this.height;
+    this.BMI = mass / height ** 2;
+    return this.BMI;
+  },
+};
+
+let johnData = {
+  firstName: 'John',
+  lastName: 'Smith',
+  mass: 92,
+  height: 1.95,
+  calcBMI: function () {
+    let mass = this.mass;
+    let height = this.height;
+    this.BMI = mass / height ** 2;
+    return this.BMI;
+  },
+};
+
+johnData.calcBMI();
+markData.calcBMI();
+
+johnData.BMI > markData.BMI
+  ? console.log(
+      `${johnData.firstName} ${johnData.lastName}'s BMI(${johnData.BMI}) is higher than ${markData.firstName} ${markData.lastName}'s BMI(${markData.BMI})!`
+    )
+  : console.log(
+      `${markData.firstName} ${markData.lastName}'s BMI(${markData.BMI}) is higher than ${johnData.firstName} ${johnData.lastName}'s BMI(${johnData.BMI})!`
+    );
