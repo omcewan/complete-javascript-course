@@ -99,10 +99,47 @@ let johnData = {
 johnData.calcBMI();
 markData.calcBMI();
 
-johnData.BMI > markData.BMI
+/* johnData.BMI > markData.BMI
   ? console.log(
       `${johnData.firstName} ${johnData.lastName}'s BMI(${johnData.BMI}) is higher than ${markData.firstName} ${markData.lastName}'s BMI(${markData.BMI})!`
     )
   : console.log(
       `${markData.firstName} ${markData.lastName}'s BMI(${markData.BMI}) is higher than ${johnData.firstName} ${johnData.lastName}'s BMI(${johnData.BMI})!`
     );
+*/
+
+// TODO: Challenge 4
+
+const newBills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+
+// for (let i = 0; i < 10; i++) {
+//   const bill = Math.floor(Math.random() * 100);
+//   newBills.push(bill);
+// }
+
+// console.log(newBills)
+
+const newTips = [],
+  newTotals = [];
+
+// newBills.forEach((bill, idx) => {
+//   newTips.push(calcTip(bill));
+//   newTotals.push(newBills[idx] + newTips[idx]);
+// });
+
+for (let i = 0; i < newBills.length; i++) {
+  newTips.push(calcTip(newBills[i]));
+  newTotals.push(newTips[i] + newBills[i]);
+}
+
+// console.log(newBills, newTips, newTotals);
+
+function _calcAverage(arr) {
+  let total = 0;
+  for (let i = 0; i < arr.length; i++) {
+    total += arr[i];
+  }
+  return total / arr.length;
+}
+
+console.log(_calcAverage(newTotals));
