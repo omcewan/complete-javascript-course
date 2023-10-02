@@ -107,6 +107,7 @@ const { team1, x: draw, team2 } = game.odds;
 
 // 6. Write a function ('printGoals') that receives an arbitrary number of player names (NOT an array) and prints each of them to the console, along with the number of goals that were scored in total (number of player names passed in)
 const printGoals = function (...players) {
+  // ...players is already an array so do not need to create a new array. goalScorers does not need to be created.
   const goalScorers = [...players];
   for (let i = 0; i < goalScorers.length; i++) {
     console.log(goalScorers[i]);
@@ -117,4 +118,31 @@ const printGoals = function (...players) {
 // 7. The team with the lower odd is more likely to win. Print to the console which team is more likely to win, WITHOUT using an if/else statement or the ternary operator.
 console.log((team1 < team2 && 'team1') || (team2 < team1 && 'team2'));
 
-// printGoals('orlando', 'james');
+const {scored} = game
+console.log(scored);
+
+for (const [idx, scorer] of game.scored.entries()) {
+  console.log(`Goal ${idx + 1}: ${scorer}`);
+}
+
+let averageOdds = 0
+const totalOdds = Object.values(game.odds);
+for (const [key, value] of Object.entries(game.odds)) {
+  averageOdds += value;
+}
+console.log(averageOdds/totalOdds.length);
+
+for (const [key, value] of Object.entries(game.odds)) {
+  console.log(`Odds of victory ${key == 'x' ? 'Draw': game[key]}: ${value}`);
+}
+
+const scorers = {};
+
+for (const [idx, scorer] of game.scored.entries()) {
+  if (!scorers[scorer]) {
+    scorers[scorer] = 1; 
+  } else {
+    scorers[scorer] += 1;
+  }
+}
+console.log(scorers);
