@@ -118,31 +118,63 @@ const printGoals = function (...players) {
 // 7. The team with the lower odd is more likely to win. Print to the console which team is more likely to win, WITHOUT using an if/else statement or the ternary operator.
 console.log((team1 < team2 && 'team1') || (team2 < team1 && 'team2'));
 
-const {scored} = game
+const { scored } = game;
 console.log(scored);
 
 for (const [idx, scorer] of game.scored.entries()) {
   console.log(`Goal ${idx + 1}: ${scorer}`);
 }
 
-let averageOdds = 0
+let averageOdds = 0;
 const totalOdds = Object.values(game.odds);
 for (const [key, value] of Object.entries(game.odds)) {
   averageOdds += value;
 }
-console.log(averageOdds/totalOdds.length);
+console.log(averageOdds / totalOdds.length);
 
 for (const [key, value] of Object.entries(game.odds)) {
-  console.log(`Odds of victory ${key == 'x' ? 'Draw': game[key]}: ${value}`);
+  console.log(`Odds of victory ${key == 'x' ? 'Draw' : game[key]}: ${value}`);
 }
 
 const scorers = {};
 
 for (const [idx, scorer] of game.scored.entries()) {
   if (!scorers[scorer]) {
-    scorers[scorer] = 1; 
+    scorers[scorer] = 1;
   } else {
     scorers[scorer] += 1;
   }
 }
 console.log(scorers);
+
+// Challenge three
+const gameEvents = new Map([
+  [17, '⚽️ GOAL'],
+  [36, '🔁 Substitution'],
+  [47, '⚽️ GOAL'],
+  [61, '🔁 Substitution'],
+  [64, '🔶 Yellow card'],
+  [69, '🔴 Red card'],
+  [70, '🔁 Substitution'],
+  [72, '🔁 Substitution'],
+  [76, '⚽️ GOAL'],
+  [80, '⚽️ GOAL'],
+  [92, '🔶 Yellow card'],
+]);
+
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+
+gameEvents.delete(64);
+
+console.log(
+  `An event happened, on average, every ${90 / gameEvents.size} minutes`
+);
+
+gameEvents.forEach((value, key) => {
+  if (key <= 45) {
+    console.log(`[FIRST HALF] ${key}: ${value}`);
+  } else {
+    console.log(`[SECOND HALF] ${key}: ${value}`);
+  }
+});
