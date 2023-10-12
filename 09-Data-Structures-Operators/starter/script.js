@@ -178,3 +178,41 @@ gameEvents.forEach((value, key) => {
     console.log(`[SECOND HALF] ${key}: ${value}`);
   }
 });
+
+// Coding Challenge #4
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+function convertTextCamelCase() {
+  let newStr = '';
+  const textStr = document.querySelector('textarea').value;
+  const strArr = textStr.split('\n');
+  let longestStr = 0;
+  const camelCaseArr = [];
+  for (let i = 0; i < strArr.length; i++) {
+    let str = strArr[i].toLowerCase().trimStart().trimEnd().split('_');
+
+    for (let j = 0; j < str.length; j++) {
+      if (j == str.length - 1) {
+        const upperCaseStr = str[j].replace(str[j][0], str[j][0].toUpperCase());
+        str[j] = upperCaseStr;
+      }
+    }
+    str = str.join('');
+    if (str.length > longestStr) {
+      longestStr = str.length;
+    }
+    camelCaseArr.push(str);
+  }
+  // console.log(longestStr);
+  // console.log(camelCaseArr);
+  for (let [idx, wrd] of camelCaseArr.entries()) {
+    let emojiWrd = wrd.padEnd(longestStr + 4, ' ') + '✅'.repeat(++idx);
+    newStr += emojiWrd + '\n';
+    console.log(emojiWrd);
+  }
+  document.querySelector('textarea').value = newStr;
+}
+
+const element = document.querySelector('button');
+element.addEventListener('click', convertTextCamelCase);
